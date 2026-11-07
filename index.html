@@ -7,8 +7,9 @@
 <meta name="robots" content="index,follow">
 <meta name="theme-color" content="#0b3a6b">
 
-<!-- Favicon swaps with the theme (JS-driven below) -->
-<link rel="icon" type="image/webp" href="logo-light.webp" id="favicon">
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="shortcut icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="logo-light.webp">
 
 <title>نظرسنجی وب‌سایت | صدرا</title>
@@ -37,31 +38,19 @@
   function isValidTheme(t) { return t === 'light' || t === 'dark'; }
   function currentTheme() { var t = root.getAttribute('data-theme'); return isValidTheme(t) ? t : 'light'; }
   function saveTheme(t) { try { localStorage.setItem(STORAGE_KEY, t); } catch (e) {} }
-
-  function updateFavicon(theme) {
-    var fav = document.getElementById('favicon');
-    if (!fav) return;
-    var next = theme === 'dark' ? 'logo-dark.webp' : 'logo-light.webp';
-    if (fav.getAttribute('href') !== next) fav.setAttribute('href', next);
-  }
-
   function updateControls(theme) {
     document.querySelectorAll('[data-theme-toggle]').forEach(function (b) {
       b.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
     });
   }
-
   function applyTheme(theme, persist) {
     var next = theme === 'dark' ? 'dark' : 'light';
     root.setAttribute('data-theme', next);
     if (persist) saveTheme(next);
-    updateFavicon(next);
     updateControls(next);
   }
-
   function sync() { applyTheme(currentTheme(), false); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', sync); else sync();
-
   document.addEventListener('click', function (e) {
     var t = e.target;
     if (!t || !t.closest) return;
@@ -285,7 +274,6 @@ html[data-theme="dark"] .site-header {
   min-width: 0;
 }
 
-/* Logo wrapper: holds both theme variants, CSS picks which is visible */
 .brand__logo {
   position: relative;
   width: 54px;
