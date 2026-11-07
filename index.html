@@ -7,12 +7,13 @@
 <meta name="robots" content="index,follow">
 <meta name="theme-color" content="#0b3a6b">
 
-<link rel="icon" type="image/png" href="logo.png">
-<link rel="apple-touch-icon" href="logo.png">
+<!-- Favicon swaps with the theme (JS-driven below) -->
+<link rel="icon" type="image/webp" href="logo-light.webp" id="favicon">
+<link rel="apple-touch-icon" href="logo-light.webp">
 
 <title>نظرسنجی وب‌سایت | صدرا</title>
 
-<!-- Preload the variable font: avoids a flash of fallback text -->
+<!-- Preload the variable font -->
 <link rel="preload" href="Vazirmatn-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -36,28 +37,31 @@
   function isValidTheme(t) { return t === 'light' || t === 'dark'; }
   function currentTheme() { var t = root.getAttribute('data-theme'); return isValidTheme(t) ? t : 'light'; }
   function saveTheme(t) { try { localStorage.setItem(STORAGE_KEY, t); } catch (e) {} }
-  function updateLogos(theme) {
-    var isDark = theme === 'dark';
-    document.querySelectorAll('[data-theme-logo]').forEach(function (logo) {
-      var next = isDark ? logo.getAttribute('data-theme-logo-dark') : logo.getAttribute('data-theme-logo-light');
-      if (!next) return;
-      if (logo.getAttribute('src') !== next) logo.setAttribute('src', next);
-    });
+
+  function updateFavicon(theme) {
+    var fav = document.getElementById('favicon');
+    if (!fav) return;
+    var next = theme === 'dark' ? 'logo-dark.webp' : 'logo-light.webp';
+    if (fav.getAttribute('href') !== next) fav.setAttribute('href', next);
   }
+
   function updateControls(theme) {
     document.querySelectorAll('[data-theme-toggle]').forEach(function (b) {
       b.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
     });
   }
+
   function applyTheme(theme, persist) {
     var next = theme === 'dark' ? 'dark' : 'light';
     root.setAttribute('data-theme', next);
     if (persist) saveTheme(next);
-    updateLogos(next);
+    updateFavicon(next);
     updateControls(next);
   }
+
   function sync() { applyTheme(currentTheme(), false); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', sync); else sync();
+
   document.addEventListener('click', function (e) {
     var t = e.target;
     if (!t || !t.closest) return;
@@ -72,7 +76,6 @@
 /* ==========================================================================
    INLINE DESIGN SYSTEM
    Source: app.css + modern.css (Sadra University design system)
-   All rules and token values preserved exactly.
    ========================================================================== */
 
 @font-face {
@@ -282,15 +285,29 @@ html[data-theme="dark"] .site-header {
   min-width: 0;
 }
 
+/* Logo wrapper: holds both theme variants, CSS picks which is visible */
 .brand__logo {
+  position: relative;
   width: 54px;
   height: 54px;
-  display: block;
   flex-shrink: 0;
+  flex-basis: 54px;
+  display: block;
+}
+
+.brand__logo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   object-position: center;
   border-radius: 10px;
 }
+
+.brand__logo-img--dark { display: none; }
+html[data-theme="dark"] .brand__logo-img--light { display: none; }
+html[data-theme="dark"] .brand__logo-img--dark  { display: block; }
 
 .brand__text {
   display: flex;
@@ -533,10 +550,10 @@ a:focus-visible, button:focus-visible {
   outline-offset: 2px;
 }
 
-/* ---------- Media ---------- */
+/* ---------- Media (exclude brand logos from dark-mode dim) ---------- */
 img, video { max-width: 100%; height: auto; }
 img[loading="lazy"] { transition: opacity .4s ease; }
-html[data-theme="dark"] img:not([src$=".svg"]):not(.home-slide__backdrop) {
+html[data-theme="dark"] img:not([src$=".svg"]):not(.home-slide__backdrop):not(.brand__logo-img) {
   filter: brightness(.94) contrast(1.02);
 }
 
@@ -557,7 +574,8 @@ html:not([data-theme="dark"]) .site-header { border-bottom-color: var(--color-go
 @media (max-width: 500px) {
   .site-header__inner { min-height: 64px; padding: 9px 0; }
   .brand { gap: 8px; }
-  .brand__logo { width: 42px; height: 42px; flex-basis: 42px; border-radius: 8px; }
+  .brand__logo { width: 42px; height: 42px; flex-basis: 42px; }
+  .brand__logo-img { border-radius: 8px; }
   .brand__title { max-width: 190px; font-size: 14px; }
   .brand__short { font-size: 10px; }
   .theme-toggle { width: 40px; height: 40px; min-height: 40px; }
@@ -784,7 +802,10 @@ html:not([data-theme="dark"]) .site-header { border-bottom-color: var(--color-go
 <header class="site-header">
   <div class="container site-header__inner">
     <a href="https://sadra-university.my.id" class="brand">
-      <img src="logo.png" alt="صدرا" class="brand__logo" width="54" height="54" fetchpriority="high">
+      <span class="brand__logo" aria-hidden="true">
+        <img src="logo-light.webp" alt="" class="brand__logo-img brand__logo-img--light" width="54" height="54" fetchpriority="high">
+        <img src="logo-dark.webp"  alt="" class="brand__logo-img brand__logo-img--dark"  width="54" height="54">
+      </span>
       <span class="brand__text">
         <span class="brand__title">موسسه آموزش عالی صدرالمتالهین</span>
         <span class="brand__short">صدرا</span>
