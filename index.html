@@ -5,8 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="نظرسنجی وب‌سایت موسسه آموزش عالی صدرالمتالهین">
 <meta name="robots" content="index,follow">
-<link rel="icon" type="image/x-icon" href="https://helping.sadra-university.my.id/raw/c50ae71d-5221-4620-bbde-6f515a3c947b">
+<meta name="theme-color" content="#0b3a6b">
+
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+
 <title>نظرسنجی وب‌سایت | صدرا</title>
+
+<!-- Preload the variable font: avoids a flash of fallback text -->
+<link rel="preload" href="Vazirmatn-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -70,7 +77,7 @@
 
 @font-face {
   font-family: 'Vazirmatn';
-  src: url('https://helping.sadra-university.my.id/raw/d2954a94-99d5-481d-a7f5-f971a8525971') format('woff2');
+  src: url('Vazirmatn-VariableFont_wght.woff2') format('woff2');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -682,6 +689,10 @@ html:not([data-theme="dark"]) .site-header { border-bottom-color: var(--color-go
   background-color: var(--color-accent);
   color: #0d141b;
 }
+.option-input:focus-visible + .option-label {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 3px;
+}
 
 .rating-dot { width: 10px; height: 10px; border-radius: 50%; margin-bottom: 8px; }
 .rate-1 .rating-dot { background-color: #10b981; }
@@ -773,7 +784,7 @@ html:not([data-theme="dark"]) .site-header { border-bottom-color: var(--color-go
 <header class="site-header">
   <div class="container site-header__inner">
     <a href="https://sadra-university.my.id" class="brand">
-      <img src="https://helping.sadra-university.my.id/raw/affc146a-e753-4bb1-9cc1-d6abf96bf0ad" alt="صدرا" class="brand__logo" data-theme-logo data-theme-logo-light="https://helping.sadra-university.my.id/raw/affc146a-e753-4bb1-9cc1-d6abf96bf0ad" data-theme-logo-dark="https://helping.sadra-university.my.id/raw/45e48dfd-73e3-4beb-a722-ef64c159b0ef">
+      <img src="logo.png" alt="صدرا" class="brand__logo" width="54" height="54" fetchpriority="high">
       <span class="brand__text">
         <span class="brand__title">موسسه آموزش عالی صدرالمتالهین</span>
         <span class="brand__short">صدرا</span>
@@ -819,61 +830,61 @@ html:not([data-theme="dark"]) .site-header { border-bottom-color: var(--color-go
 
           <!-- Q1 -->
           <div class="question-card">
-            <div class="question-title"><span class="question-number">۱</span><span>به نظر شما وب‌سایت از نظر سرعت، روان بودن و عملکرد کلی چطوره؟</span></div>
+            <div class="question-title"><span class="question-number" aria-hidden="true">۱</span><span>به نظر شما وب‌سایت از نظر سرعت، روان بودن و عملکرد کلی چطوره؟</span></div>
             <div class="options-grid" role="radiogroup" aria-label="سوال ۱">
-              <input type="radio" name="q1" id="q1-1" value="1" class="option-input" required><label for="q1-1" class="option-label rate-1"><div class="rating-dot"></div>بسیار سریع و روان</label>
-              <input type="radio" name="q1" id="q1-2" value="2" class="option-input"><label for="q1-2" class="option-label rate-2"><div class="rating-dot"></div>نسبتاً سریع و خوب</label>
-              <input type="radio" name="q1" id="q1-3" value="3" class="option-input"><label for="q1-3" class="option-label rate-3"><div class="rating-dot"></div>متوسط</label>
-              <input type="radio" name="q1" id="q1-4" value="4" class="option-input"><label for="q1-4" class="option-label rate-4"><div class="rating-dot"></div>کمی کند</label>
-              <input type="radio" name="q1" id="q1-5" value="5" class="option-input"><label for="q1-5" class="option-label rate-5"><div class="rating-dot"></div>خیلی کند</label>
+              <input type="radio" name="q1" id="q1-1" value="1" class="option-input" required><label for="q1-1" class="option-label rate-1"><div class="rating-dot" aria-hidden="true"></div>بسیار سریع و روان</label>
+              <input type="radio" name="q1" id="q1-2" value="2" class="option-input"><label for="q1-2" class="option-label rate-2"><div class="rating-dot" aria-hidden="true"></div>نسبتاً سریع و خوب</label>
+              <input type="radio" name="q1" id="q1-3" value="3" class="option-input"><label for="q1-3" class="option-label rate-3"><div class="rating-dot" aria-hidden="true"></div>متوسط</label>
+              <input type="radio" name="q1" id="q1-4" value="4" class="option-input"><label for="q1-4" class="option-label rate-4"><div class="rating-dot" aria-hidden="true"></div>کمی کند</label>
+              <input type="radio" name="q1" id="q1-5" value="5" class="option-input"><label for="q1-5" class="option-label rate-5"><div class="rating-dot" aria-hidden="true"></div>خیلی کند</label>
             </div>
           </div>
 
           <!-- Q2 -->
           <div class="question-card">
-            <div class="question-title"><span class="question-number">۲</span><span>به نظرتون اگه این وب‌سایت جایگزین وب‌سایت اصلی بشه، تجربه بهتری ایجاد می‌کنه؟</span></div>
+            <div class="question-title"><span class="question-number" aria-hidden="true">۲</span><span>به نظرتون اگه این وب‌سایت جایگزین وب‌سایت اصلی بشه، تجربه بهتری ایجاد می‌کنه؟</span></div>
             <div class="options-grid" role="radiogroup" aria-label="سوال ۲">
-              <input type="radio" name="q2" id="q2-1" value="1" class="option-input" required><label for="q2-1" class="option-label rate-1"><div class="rating-dot"></div>قطعاً بهتره</label>
-              <input type="radio" name="q2" id="q2-2" value="2" class="option-input"><label for="q2-2" class="option-label rate-2"><div class="rating-dot"></div>احتمالاً بهتره</label>
-              <input type="radio" name="q2" id="q2-3" value="3" class="option-input"><label for="q2-3" class="option-label rate-3"><div class="rating-dot"></div>تفاوتی نمی‌کنه</label>
-              <input type="radio" name="q2" id="q2-4" value="4" class="option-input"><label for="q2-4" class="option-label rate-4"><div class="rating-dot"></div>احتمالاً بدتره</label>
-              <input type="radio" name="q2" id="q2-5" value="5" class="option-input"><label for="q2-5" class="option-label rate-5"><div class="rating-dot"></div>قطعاً بدتره</label>
+              <input type="radio" name="q2" id="q2-1" value="1" class="option-input" required><label for="q2-1" class="option-label rate-1"><div class="rating-dot" aria-hidden="true"></div>قطعاً بهتره</label>
+              <input type="radio" name="q2" id="q2-2" value="2" class="option-input"><label for="q2-2" class="option-label rate-2"><div class="rating-dot" aria-hidden="true"></div>احتمالاً بهتره</label>
+              <input type="radio" name="q2" id="q2-3" value="3" class="option-input"><label for="q2-3" class="option-label rate-3"><div class="rating-dot" aria-hidden="true"></div>تفاوتی نمی‌کنه</label>
+              <input type="radio" name="q2" id="q2-4" value="4" class="option-input"><label for="q2-4" class="option-label rate-4"><div class="rating-dot" aria-hidden="true"></div>احتمالاً بدتره</label>
+              <input type="radio" name="q2" id="q2-5" value="5" class="option-input"><label for="q2-5" class="option-label rate-5"><div class="rating-dot" aria-hidden="true"></div>قطعاً بدتره</label>
             </div>
           </div>
 
           <!-- Q3 -->
           <div class="question-card">
-            <div class="question-title"><span class="question-number">۳</span><span>از نظر ظاهر، طراحی و جذابیت بصری چقدر رضایت دارید؟</span></div>
+            <div class="question-title"><span class="question-number" aria-hidden="true">۳</span><span>از نظر ظاهر، طراحی و جذابیت بصری چقدر رضایت دارید؟</span></div>
             <div class="options-grid" role="radiogroup" aria-label="سوال ۳">
-              <input type="radio" name="q3" id="q3-1" value="1" class="option-input" required><label for="q3-1" class="option-label rate-1"><div class="rating-dot"></div>بسیار جذاب</label>
-              <input type="radio" name="q3" id="q3-2" value="2" class="option-input"><label for="q3-2" class="option-label rate-2"><div class="rating-dot"></div>خوب</label>
-              <input type="radio" name="q3" id="q3-3" value="3" class="option-input"><label for="q3-3" class="option-label rate-3"><div class="rating-dot"></div>معمولی</label>
-              <input type="radio" name="q3" id="q3-4" value="4" class="option-input"><label for="q3-4" class="option-label rate-4"><div class="rating-dot"></div>جذاب نیست</label>
-              <input type="radio" name="q3" id="q3-5" value="5" class="option-input"><label for="q3-5" class="option-label rate-5"><div class="rating-dot"></div>اصلاً زیبا نیست</label>
+              <input type="radio" name="q3" id="q3-1" value="1" class="option-input" required><label for="q3-1" class="option-label rate-1"><div class="rating-dot" aria-hidden="true"></div>بسیار جذاب</label>
+              <input type="radio" name="q3" id="q3-2" value="2" class="option-input"><label for="q3-2" class="option-label rate-2"><div class="rating-dot" aria-hidden="true"></div>خوب</label>
+              <input type="radio" name="q3" id="q3-3" value="3" class="option-input"><label for="q3-3" class="option-label rate-3"><div class="rating-dot" aria-hidden="true"></div>معمولی</label>
+              <input type="radio" name="q3" id="q3-4" value="4" class="option-input"><label for="q3-4" class="option-label rate-4"><div class="rating-dot" aria-hidden="true"></div>جذاب نیست</label>
+              <input type="radio" name="q3" id="q3-5" value="5" class="option-input"><label for="q3-5" class="option-label rate-5"><div class="rating-dot" aria-hidden="true"></div>اصلاً زیبا نیست</label>
             </div>
           </div>
 
           <!-- Q4 -->
           <div class="question-card">
-            <div class="question-title"><span class="question-number">۴</span><span>پیدا کردن اطلاعات در این وب‌سایت چقدر آسونه؟</span></div>
+            <div class="question-title"><span class="question-number" aria-hidden="true">۴</span><span>پیدا کردن اطلاعات در این وب‌سایت چقدر آسونه؟</span></div>
             <div class="options-grid" role="radiogroup" aria-label="سوال ۴">
-              <input type="radio" name="q4" id="q4-1" value="1" class="option-input" required><label for="q4-1" class="option-label rate-1"><div class="rating-dot"></div>خیلی راحت</label>
-              <input type="radio" name="q4" id="q4-2" value="2" class="option-input"><label for="q4-2" class="option-label rate-2"><div class="rating-dot"></div>نسبتاً راحت</label>
-              <input type="radio" name="q4" id="q4-3" value="3" class="option-input"><label for="q4-3" class="option-label rate-3"><div class="rating-dot"></div>گاهی گیج‌کننده</label>
-              <input type="radio" name="q4" id="q4-4" value="4" class="option-input"><label for="q4-4" class="option-label rate-4"><div class="rating-dot"></div>سخته</label>
-              <input type="radio" name="q4" id="q4-5" value="5" class="option-input"><label for="q4-5" class="option-label rate-5"><div class="rating-dot"></div>پیدا نمی‌کنم</label>
+              <input type="radio" name="q4" id="q4-1" value="1" class="option-input" required><label for="q4-1" class="option-label rate-1"><div class="rating-dot" aria-hidden="true"></div>خیلی راحت</label>
+              <input type="radio" name="q4" id="q4-2" value="2" class="option-input"><label for="q4-2" class="option-label rate-2"><div class="rating-dot" aria-hidden="true"></div>نسبتاً راحت</label>
+              <input type="radio" name="q4" id="q4-3" value="3" class="option-input"><label for="q4-3" class="option-label rate-3"><div class="rating-dot" aria-hidden="true"></div>گاهی گیج‌کننده</label>
+              <input type="radio" name="q4" id="q4-4" value="4" class="option-input"><label for="q4-4" class="option-label rate-4"><div class="rating-dot" aria-hidden="true"></div>سخته</label>
+              <input type="radio" name="q4" id="q4-5" value="5" class="option-input"><label for="q4-5" class="option-label rate-5"><div class="rating-dot" aria-hidden="true"></div>پیدا نمی‌کنم</label>
             </div>
           </div>
 
           <!-- Q5 -->
           <div class="question-card">
-            <div class="question-title"><span class="question-number">۵</span><span>در مجموع چقدر از وبسایت جدید صدرا رضایت دارید و آن را به دیگران پیشنهاد می‌کنید؟</span></div>
+            <div class="question-title"><span class="question-number" aria-hidden="true">۵</span><span>در مجموع چقدر رضایت دارید و آیا پیشنهاد می‌کنید؟</span></div>
             <div class="options-grid" role="radiogroup" aria-label="سوال ۵">
-              <input type="radio" name="q5" id="q5-1" value="1" class="option-input" required><label for="q5-1" class="option-label rate-1"><div class="rating-dot"></div>کاملاً راضی‌ام</label>
-              <input type="radio" name="q5" id="q5-2" value="2" class="option-input"><label for="q5-2" class="option-label rate-2"><div class="rating-dot"></div>راضی‌ام</label>
-              <input type="radio" name="q5" id="q5-3" value="3" class="option-input"><label for="q5-3" class="option-label rate-3"><div class="rating-dot"></div>متوسطه</label>
-              <input type="radio" name="q5" id="q5-4" value="4" class="option-input"><label for="q5-4" class="option-label rate-4"><div class="rating-dot"></div>راضی نیستم</label>
-              <input type="radio" name="q5" id="q5-5" value="5" class="option-input"><label for="q5-5" class="option-label rate-5"><div class="rating-dot"></div>اصلاً راضی نیستم</label>
+              <input type="radio" name="q5" id="q5-1" value="1" class="option-input" required><label for="q5-1" class="option-label rate-1"><div class="rating-dot" aria-hidden="true"></div>کاملاً راضی‌ام</label>
+              <input type="radio" name="q5" id="q5-2" value="2" class="option-input"><label for="q5-2" class="option-label rate-2"><div class="rating-dot" aria-hidden="true"></div>راضی‌ام</label>
+              <input type="radio" name="q5" id="q5-3" value="3" class="option-input"><label for="q5-3" class="option-label rate-3"><div class="rating-dot" aria-hidden="true"></div>متوسطه</label>
+              <input type="radio" name="q5" id="q5-4" value="4" class="option-input"><label for="q5-4" class="option-label rate-4"><div class="rating-dot" aria-hidden="true"></div>راضی نیستم</label>
+              <input type="radio" name="q5" id="q5-5" value="5" class="option-input"><label for="q5-5" class="option-label rate-5"><div class="rating-dot" aria-hidden="true"></div>اصلاً راضی نیستم</label>
             </div>
           </div>
 
